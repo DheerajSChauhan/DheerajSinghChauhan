@@ -7,7 +7,7 @@
     "gatsby"
   ],
   "scripts": {
-    "dev": "rm -rf .cache && gatsby develop",
+    "dev": "gatsby clean && gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
