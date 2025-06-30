@@ -31,7 +31,6 @@ import headshot from "../images/headshot.jpg";
 // Styles
 import "../styles/global.scss";
 import "../styles/about.scss";
-import Headshot from "../components/Headshot";
 
 const panelMap = (index) => {
   const map = {
@@ -152,6 +151,19 @@ const About = () => {
 
   const isMobile =
     typeof window !== "undefined" ? window.innerWidth < 1440 : true;
+
+  // Dynamically import Headshot component only on client-side
+  const Headshot = React.useMemo(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        return require('../components/Headshot').default;
+      } catch (error) {
+        console.error('Failed to load Headshot component:', error);
+        return () => null;
+      }
+    }
+    return () => null;
+  }, []);
 
   return (
     <>
